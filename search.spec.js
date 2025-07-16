@@ -23,6 +23,7 @@ test('Search for "Bird Head Toque" on arcteryx.com.au', async ({ page }) => {
     await page.goto('https://arcteryx.com.au');
 
     const popupClose = page.locator('button.klaviyo-close-form');
+    await page.waitForTimeout(5000);
     if (await popupClose.isVisible()) {
         await popupClose.click();
     }
@@ -43,18 +44,15 @@ test('Search for "Bird Head Toque" on arcteryx.com.au', async ({ page }) => {
         return;
     }
 
-    await page.waitForLoadState('networkidle');
-    try {
-        await expect(page.locator('text=Word Toque')).toBeVisible({ timeout: 5000 });
+    await page.waitForTimeout(5000);
+
+    const matchingImages = page.locator('img[alt*="Bird Head Toque"]');
+    const count = await matchingImages.count();
+
+    if (count > 0) {
         await sendEmailNotification(
             'Arcteryx Bird Head Toque AVAILABLE',
-            'Bird Head Toque is now available on the Arcteryx website.'
-        );
-    } catch {
-        console.warn('Search result not found.');
-        await sendEmailNotification(
-            'Arcteryx Bird Head Toque not AVAILABLE',
-            'Bird Head Toque is not available on the Arcteryx website.'
+            `Bird Head Toque is now available on the Arcteryx website.`
         );
     }
 });
