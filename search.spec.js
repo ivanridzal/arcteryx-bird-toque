@@ -46,7 +46,7 @@ test('Search for "Bird Head Toque" on arcteryx.com.au', async ({ page }) => {
 
     await page.waitForTimeout(5000);
 
-    const productImage = page.locator('img[alt*="Word Toque"]').first();
+    const productImage = page.locator('img[alt*="Bird Head Toque"]').first();
 
     if (await productImage.count() > 0) {
         const productLink = await productImage.evaluate((img) => {
