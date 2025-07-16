@@ -2,12 +2,16 @@ name: Daily Playwright Check
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+    - cron: '0 */4 * * *'  # Runs daily at midnight UTC
   workflow_dispatch:      # Also lets you manually trigger
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      GMAIL_USER: ${{ secrets.GMAIL_USER }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
 
     steps:
       - name: Checkout repo
