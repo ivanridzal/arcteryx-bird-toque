@@ -46,7 +46,7 @@ test('Search for "Bird Head Toque" on arcteryx.com.au', async ({ page }) => {
 
     await page.waitForTimeout(5000);
 
-    const matchingImages = page.locator('img[alt*="Bird Head Toque"]');
+    const matchingImages = page.locator('img[alt*="Word Toque"]');
     const count = await matchingImages.count();
 
     if (count > 0) {
