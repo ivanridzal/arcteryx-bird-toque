@@ -45,7 +45,7 @@ test('Search for "Bird Head Toque" on arcteryx.com.au', async ({ page }) => {
 
     await page.waitForLoadState('networkidle');
     try {
-        await expect(page.locator('text=Bird Head Toque')).toBeVisible({ timeout: 5000 });
+        await expect(page.locator('text=Word Toque')).toBeVisible({ timeout: 5000 });
         await sendEmailNotification(
             'Arcteryx Bird Head Toque AVAILABLE',
             'Bird Head Toque is now available on the Arcteryx website.'
